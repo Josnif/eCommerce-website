@@ -1,5 +1,5 @@
-### A Multiseller eCommerce website with Laravel
+# A Multiseller eCommerce website with Laravel
 
-# Sellers' dashbord
-# vovager Admin panel
-# Varieties of shops
+### Sellers' dashbord
+### vovager Admin panel
+### Varieties of shops
