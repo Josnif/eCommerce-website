@@ -1,0 +1,9 @@
+
+firebase works for server, api, storage purposes.
+
+https://google.dev/codelabs/firebase-get-to-know-web/
+
+codelabs
+
+https://google.dev/codelabs/firebase-extension?return=%2Ftopics%2Ffirebase#0
+
