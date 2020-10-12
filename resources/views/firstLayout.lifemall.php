@@ -38,14 +38,14 @@
         <div class="container-fluid">
             <div class="notification-wrapper">
                 <div class="notification-pera-graph notification-pera-graph-2">
-                    @if(session()->has('message'))
+                @if(session()->has('message'))
                         <p>{{session('message')}}</p>
-                        @endif
-                        @if(session()->has('error'))
-                            <p>{{session('error')}}</p>
-                        @endif
-                        @if(!session()->has('message'))
-                            <p>Get A big Discount for Gadgets. 10% to 70% Discount for all products. Save money</p>
+                    @endif
+                    @if(session()->has('error'))
+                        <p>{{session('error')}}</p>
+                    @endif
+                    @if(!session()->has('message'))
+                        <p>Get A big Discount for Gadgets. 10% to 70% Discount for all products. Save money</p>
                     @endif
                 </div>
                 <div class="notification-btn-close">
@@ -63,7 +63,7 @@
     <header>
         <div class="header-top-wrapper-2 border-bottom-2">
             <div class="header-info-wrapper pl-200 pr-200">
-                <div class="header-contact-info header-contact-info2 ">
+                <div class="header-contact-info">
                     <ul>
                         <li><i class="pe-7s-call"></i> +011 2231 4545</li>
                         <li><i class="pe-7s-mail"></i> <a href="#">company@domail.info</a></li>
@@ -87,7 +87,21 @@
                         <img src="/assets/img/logo/logo-3.png" alt="">
                     </a>
                 </div>
-                <div class="categories-search-wrapper categories-search-wrapper2">
+                <div class="categories-search-wrapper">
+                    {{-- <div class="all-categories">
+                        <div class="select-wrapper">
+                            <select class="select">
+                                <option value="">All Categories</option>
+                                <option value="">Smartphones </option>
+                                <option value="">Computers</option>
+                                <option value="">Laptops </option>
+                                <option value="">Camerea </option>
+                                <option value="">Watches</option>
+                                <option value="">Lights </option>
+                                <option value="">Air conditioner</option>
+                            </select>
+                        </div>
+                    </div> --}}
                     <div class="categories-wrapper">
                         <form action="{{route('products.search')}}" method="GET">
                             <input name="query" placeholder="Enter Your key word" type="text">
@@ -95,46 +109,41 @@
                         </form>
                     </div>
                 </div>
-                <div class="header-cart-3">
-                    <a href="{{ route('cart.index') }}">
-                        <i class="ti-shopping-cart"></i>My Cart
-                        <span>
-                            @auth
+                <div class="trace-cart-wrapper">
+                    <div class="trace same-style">
+                        <div class="same-style-icon">
+                            <a href="#"><i class="pe-7s-plane"></i></a>
+                        </div>
+                        <div class="same-style-text">
+                            <a href="#">Product <br>trace</a>
+                        </div>
+                    </div>
+                    <div class="categories-cart same-style">
+                        <div class="same-style-icon">
+                            <a href="#"><i class="pe-7s-cart"></i></a>
+                        </div>
+                        <div class="same-style-text">
+                            <a href="{{ route('cart.index') }}">My Cart <br>
+
+                                @auth
                                 {{Cart::session(auth()->id())->getContent()->count()}}</span>
-                            @else
-                                0
-                            @endauth
-                        </span>
-                    </a>
-                    <ul class="cart-dropdown">
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/img/cart/1.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </div>
-                        </li>
-                        
-                        <li class="cart-btn-wrapper">
-                            <a class="cart-btn btn-hover" href="#">view cart</a>
-                            <a class="cart-btn btn-hover" href="#">checkout</a>
-                        </li>
-                    </ul>
+                                @else
+                                    0
+                                @endauth
+
+                                Item</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="mobile-menu-area mobile-menu-none-block electro-2-menu">
+                <div class="mobile-menu-area electro-menu d-md-block col-md-12 col-lg-12 col-12 d-lg-none d-xl-none">
                     <div class="mobile-menu">
                         <nav id="mobile-menu-active">
                             <ul class="menu-overflow">
-                                <li><a href="#">HOME</a></li>
-                                <li><a href="#">shop</a></li>
-                                <li><a href="#">BLOG</a></li>
-                                <li><a href="contact.html"> Contact  </a></li>
+                                <li><a href="{{url('/')}}">HOME</a>
+                                </li>
+                                <li><a href="#">BLOG</a>
+                                </li>
+                                <li><a href="#"> Contact</a></li>
                             </ul>
                         </nav>
                     </div>

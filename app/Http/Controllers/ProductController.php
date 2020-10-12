@@ -22,7 +22,6 @@ class ProductController extends Controller
         if ($categoryId) {
             $category = Category::find($categoryId);
             $categoryName = ucfirst($category->name);
-            // $products = $category->products;
 
             $products = $category->allProducts();
         } else {
