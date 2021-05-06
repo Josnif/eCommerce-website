@@ -32,4 +32,5 @@ class CartUpdateForm extends Component
     {
         return view('livewire.cart-update-form');
     }
+
 }

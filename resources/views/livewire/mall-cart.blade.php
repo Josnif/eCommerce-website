@@ -18,7 +18,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach ($cartItems as $item)
                                     <tr>
                                         <td class="product-remove">

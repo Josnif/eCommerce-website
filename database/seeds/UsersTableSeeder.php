@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'Jotweb89@gmail.com',
                 'avatar' => 'users\\August2020\\NM2vUyzDWc2KO8kpWjqi.png',
                 'email_verified_at' => NULL,
+                // password is admin 
                 'password' => '$2y$10$6OnWAt9p3k4lkm923ZYljuECFO/McYZ9MgHY6UBRaE6nRiW8EeNMO',
                 'remember_token' => NULL,
                 'settings' => '{"locale":"en"}',

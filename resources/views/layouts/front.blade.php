@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>LifeMall - eCommerce HTML5 Template</title>
+    <title>@php echo !empty(setting('site.title')) ? setting('site.title') : 'LifeMall Web shop'; @endphp</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -25,6 +25,7 @@
     @livewireStyles
 
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -45,6 +46,7 @@
                             <p>{{session('error')}}</p>
                         @endif
                         @if(!session()->has('message'))
+                        {{-- create notification panel in admin panel and link to frontend here and loop if more than one  --}}
                             <p>Get A big Discount for Gadgets. 10% to 70% Discount for all products. Save money</p>
                     @endif
                 </div>
@@ -60,26 +62,8 @@
         </div>
     </div>
     <!--End Notification Section-->
+    {{-- Carts need editing --}}
     <header>
-        <div class="header-top-wrapper-2 border-bottom-2">
-            <div class="header-info-wrapper pl-200 pr-200">
-                <div class="header-contact-info header-contact-info2 ">
-                    <ul>
-                        <li><i class="pe-7s-call"></i> +011 2231 4545</li>
-                        <li><i class="pe-7s-mail"></i> <a href="#">company@domail.info</a></li>
-                    </ul>
-                </div>
-                <div class="electronics-login-register">
-                    <ul>
-                        <li><a href="#"><i class="pe-7s-users"></i>My Account</a></li>
-                        <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="pe-7s-repeat"></i>Compare</a></li>
-                        <li><a href="wishlist.html"><i class="pe-7s-like"></i>Wishlist</a></li>
-                        <li><a href="#"><i class="pe-7s-flag"></i>US</a></li>
-                        <li><a class="border-none" href="#"><span>$</span>USD</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <div class="header-bottom pt-40 pb-30 clearfix">
             <div class="header-bottom-wrapper pr-200 pl-200">
                 <div class="logo-3">
@@ -95,43 +79,12 @@
                         </form>
                     </div>
                 </div>
-                <div class="header-cart-3">
-                    <a href="{{ route('cart.index') }}">
-                        <i class="ti-shopping-cart"></i>My Cart
-                        <span>
-                            @auth
-                                {{Cart::session(auth()->id())->getContent()->count()}}</span>
-                            @else
-                                0
-                            @endauth
-                        </span>
-                    </a>
-                    <ul class="cart-dropdown">
-                        <li class="single-product-cart">
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/img/cart/1.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h5><a href="#"> Bits Headphone</a></h5>
-                                <h6><a href="#">Black</a></h6>
-                                <span>$80.00 x 1</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#"><i class="ti-trash"></i></a>
-                            </div>
-                        </li>
-                        
-                        <li class="cart-btn-wrapper">
-                            <a class="cart-btn btn-hover" href="#">view cart</a>
-                            <a class="cart-btn btn-hover" href="#">checkout</a>
-                        </li>
-                    </ul>
-                </div>
+                <livewire:cart-icon />
                 <div class="mobile-menu-area mobile-menu-none-block electro-2-menu">
                     <div class="mobile-menu">
                         <nav id="mobile-menu-active">
                             <ul class="menu-overflow">
-                                <li><a href="#">HOME</a></li>
+                                <li><a href="{{url('/')}}">HOME</a></li>
                                 <li><a href="#">shop</a></li>
                                 <li><a href="#">BLOG</a></li>
                                 <li><a href="contact.html"> Contact  </a></li>
@@ -143,41 +96,9 @@
         </div>
     </header>
     <!-- header end -->
-
+    
     @yield('content')
 
-    <div class="banner-area wrapper-padding pt-30 pb-95">
-        <div class="container-fluid">
-            <div class="electro-fexible-banner bg-img" style="background-image: url(/assets/img/banner/19.jpg)">
-                <div class="fexible-content">
-                    <h3>Play with flexible</h3>
-                    <p>Multicontrol Smooth Controller, Black Color All Buttons
-                        <br>are somooth, Super Shine.</p>
-                    <a class="btn-hover flexible-btn" href="product-details.html">Buy Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="androit-banner-wrapper wrapper-padding pb-175">
-        <div class="container-fluid">
-            <div class="androit-banner-img bg-img" style="background-image: url(/assets/img/banner/36.jpg)">
-                <div class="androit-banner-content">
-                    <h3>Xolo Fast T2 Smartphone, Android <br>7.0 Unlocked.</h3>
-                    <a href="product-details.html">Buy Now →</a>
-                </div>
-                <div class="banner-price text-center">
-                    <div class="banner-price-position">
-                        <span class="banner-price-new">$125.00</span>
-                        <span class="banner-price-old">$199.00</span>
-                    </div>
-                </div>
-                <div class="phn-img">
-                    <img src="/assets/img/banner/10.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="newsletter-area ptb-60">
         <div class="container">
             <div class="row">
@@ -450,7 +371,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span class="pe-7s-close" aria-hidden="true"></span>
         </button>
@@ -461,25 +382,25 @@
                         <div class="quick-view-learg-img">
                             <div class="quick-view-tab-content tab-content">
                                 <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                                    <img src="/assets/img/quick-view/l1.jpg" alt="">
+                                    <img src="assets/img/quick-view/l1.jpg" alt="">
                                 </div>
                                 <div class="tab-pane fade" id="modal2" role="tabpanel">
-                                    <img src="/assets/img/quick-view/l2.jpg" alt="">
+                                    <img src="assets/img/quick-view/l2.jpg" alt="">
                                 </div>
                                 <div class="tab-pane fade" id="modal3" role="tabpanel">
-                                    <img src="/assets/img/quick-view/l3.jpg" alt="">
+                                    <img src="assets/img/quick-view/l3.jpg" alt="">
                                 </div>
                             </div>
                         </div>
                         <div class="quick-view-list nav" role="tablist">
                             <a class="active" href="#modal1" data-toggle="tab" role="tab">
-                                <img src="/assets/img/quick-view/s1.jpg" alt="">
+                                <img src="assets/img/quick-view/s1.jpg" alt="">
                             </a>
                             <a href="#modal2" data-toggle="tab" role="tab">
-                                <img src="/assets/img/quick-view/s2.jpg" alt="">
+                                <img src="assets/img/quick-view/s2.jpg" alt="">
                             </a>
                             <a href="#modal3" data-toggle="tab" role="tab">
-                                <img src="/assets/img/quick-view/s3.jpg" alt="">
+                                <img src="assets/img/quick-view/s3.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -523,9 +444,9 @@
                                 </div>
                             </div>
                             <div class="quickview-plus-minus">
-                                <div class="cart-plus-minus">
+                                <div class="cart-plus-minus"><div class="dec qtybutton">-</div>
                                     <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                </div>
+                                <div class="inc qtybutton">+</div></div>
                                 <div class="quickview-btn-cart">
                                     <a class="btn-hover-black" href="#">add to cart</a>
                                 </div>
@@ -540,10 +461,7 @@
         </div>
     </div>
 
-
-
-
-
+    @yield('site_js')
     <!-- all js here -->
     <script src="/assets/js/vendor/jquery-1.12.0.min.js"></script>
     <script src="/assets/js/popper.js"></script>

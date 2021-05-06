@@ -16,7 +16,7 @@ class RemoveCartItem extends Component
     public function removeFromCart() {
         \Cart::session(auth()->id())->remove($this->item['id']);
 
-        $this->emit('itemRemoved');
+        $this->emit('cartUpdated');
     }
 
     public function render()

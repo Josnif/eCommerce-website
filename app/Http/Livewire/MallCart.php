@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Http\Livewire\CartIcon;
 
 class MallCart extends Component
 {
@@ -12,7 +13,7 @@ class MallCart extends Component
 
     public function mount() {
         $this->cartItems = \Cart::session(auth()->id())->getContent()->toArray();
-    } 
+    }
 
     public function onCartUpdate() {
         // $this->mount();

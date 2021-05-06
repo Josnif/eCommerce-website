@@ -1,5 +1,7 @@
 <?php
 
+use App\order;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +38,11 @@ Route::resource('shops', 'ShopController')->middleware('auth');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+});
+
+
+Route::get('/test', function () {
+    $o = order::find(2);
+
+    $o->generateSubOrders();
 });

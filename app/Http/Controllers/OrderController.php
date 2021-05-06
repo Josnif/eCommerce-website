@@ -96,9 +96,12 @@ class OrderController extends Controller
 
         // }
 
+        $order->generateSubOrders();
+        
         // empty cart
-           \Cart::session(auth()->id())->clear();
-        // send mail to customer
+        \Cart::session(auth()->id())->clear();
+
+        // send mail to customer and admin or we can do this by creating order observer
 
             // Mail::to($order->user->email)->send(new OrderPaid($order));
 
